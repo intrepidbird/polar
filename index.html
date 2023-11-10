@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rectangular to Polar Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f2f7ff;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Rectangular to Polar Calculator</h1>
+    </header>
+
+    <!-- Calculator Section -->
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="calculatorForm">
+                    <div class="form-group">
+                        <label for="realPart">Real Part:</label>
+                        <input type="number" class="form-control" id="realPart" placeholder="Enter real part" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="imaginaryPart">Imaginary Part:</label>
+                        <input type="number" class="form-control" id="imaginaryPart" placeholder="Enter imaginary part" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Result Section -->
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div id="result" class="alert alert-info" role="alert" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2021 Rectangular to Polar Calculator
+    </footer>
+
+    <!-- Bootstrap & jQuery JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#calculatorForm').submit(function(e) {
+                e.preventDefault();
+                var realPart = parseFloat($('#realPart').val());
+                var imaginaryPart = parseFloat($('#imaginaryPart').val());
+
+                var magnitude = Math.sqrt(Math.pow(realPart, 2) + Math.pow(imaginaryPart, 2));
+                var angle = Math.atan2(imaginaryPart, realPart) * (180 / Math.PI);
+
+                $('#result').html('Magnitude: ' + magnitude.toFixed(2) + ', Angle: ' + angle.toFixed(2) + ' degrees');
+                $('#result').show();
+            });
+        });
+    </script>
+</body>
+</html>
